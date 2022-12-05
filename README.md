@@ -1,2 +1,2 @@
-# ToDo-Application-SpringBoot-Thymeleaf-
+# ToDo-Application-SpringBoot-Thymeleaf
 SpringBoot and Thymeleaf ToDo-Application
