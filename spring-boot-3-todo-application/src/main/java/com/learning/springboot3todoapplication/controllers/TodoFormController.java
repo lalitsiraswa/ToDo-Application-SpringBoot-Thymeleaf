@@ -19,7 +19,9 @@ public class TodoFormController {
     @Autowired
     private TodoItemService todoItemService;
     @GetMapping("/create-todo")
-    public String showCreateForm(TodoItem todoItem){
+    public String showCreateForm(Model model){
+        TodoItem todoItem = new TodoItem();
+        model.addAttribute("todoItem", todoItem);
         return "new-todo-item";
     }
     @PostMapping("/todo")
