@@ -35,7 +35,7 @@
                 <td th:text="${item.description}"></td>
                 <td>
                     <sapn th:if="${item.isComplete} == true" th:text="Yes"></sapn>
-                    <span th:unless="${item.isComplete} == false" th:text="No"></span>
+                    <span th:unless="${item.isComplete} == true" th:text="No"></span>
                 </td>
                 <td th:text="${item.createdAt}"></td>
                 <td th:text="${item.updatedAt}"></td>

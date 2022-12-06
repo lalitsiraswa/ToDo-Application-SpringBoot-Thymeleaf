@@ -43,4 +43,22 @@ public class TodoFormController {
         todoItemService.delete(item);
         return "redirect:/";
     }
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model){
+        TodoItem item = todoItemService
+                .getById(id)
+                .orElseThrow(()-> new IllegalArgumentException("ToDo-Item id : " + id + " not found!"));
+        model.addAttribute("todo", item);
+        return "edit-todo-item";
+    }
+    @PostMapping("/todo/{id}")
+    public String updateTodoItem(@PathVariable("id") Long id, @Valid TodoItem item, BindingResult result, Model model){
+        TodoItem todoItem = todoItemService
+                .getById(id)
+                .orElseThrow(()-> new IllegalArgumentException("ToDo-Item id : " + id + " not found!"));
+        todoItem.setDescription(item.getDescription());
+        todoItem.setIsComplete(item.getIsComplete());
+        todoItemService.save(todoItem);
+        return "redirect:/";
+    }
 }
