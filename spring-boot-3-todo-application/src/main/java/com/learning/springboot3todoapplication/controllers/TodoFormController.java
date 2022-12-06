@@ -7,8 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 @Controller
 public class TodoFormController {
@@ -24,6 +28,19 @@ public class TodoFormController {
         newTodoItem.setDescription(todoItem.getDescription());
         newTodoItem.setIsComplete(todoItem.getIsComplete());
         todoItemService.save(newTodoItem);
+        return "redirect:/";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteTodoItem(@PathVariable("id") Long id, Model model){
+//        TodoItem item;
+//        Optional<TodoItem> todoItem = todoItemService.getById(id);
+//        if(todoItem.isPresent()){
+//            item = todoItem.get();
+//        }
+        TodoItem item = todoItemService
+                .getById(id)
+                .orElseThrow(()-> new IllegalArgumentException("ToDo-Item id : " + id + " not found!"));
+        todoItemService.delete(item);
         return "redirect:/";
     }
 }
