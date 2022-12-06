@@ -18,6 +18,7 @@
         </div>
         <div class="col-6">
             <h2>Add a new ToDo-Item</h2>
+            <br/>
             <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="post">
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -27,6 +28,7 @@
                            id="description"
                            placeholder="Description"
                     >
+                    <br/>
                     <button type="submit" class="btn btn-outline-success">
                         <i class="bi bi-plus-square-fill"></i> Add Todo
                     </button>
